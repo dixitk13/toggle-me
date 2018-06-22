@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SwitchView from "./SwitchView.js";
+import "./switch.styles.css";
 
 class Switch extends Component {
   state = {

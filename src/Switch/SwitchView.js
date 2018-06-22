@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch } from "@blueprintjs/core";
+import "./switch.styles.css";
 
 const SwitchView = ({ handleClick, on }) => {
   return (

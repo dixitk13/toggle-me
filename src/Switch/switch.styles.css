@@ -2,9 +2,9 @@
     font-size: 24px;
     font-weight: 400;
 }
-.switch-view-container .special-text .on{
+.switch-view-container .special-text.on{
     color: #2f993c;
 }
-.switch-view-container .special-text .off{
+.switch-view-container .special-text.off{
     color: #ef4056;
 }
