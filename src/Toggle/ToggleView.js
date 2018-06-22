@@ -1,10 +1,10 @@
 import React from "react";
 import { Switch } from "@blueprintjs/core";
-import "./switch.styles.css";
+import "./Toggle.styles.css";
 
 const SwitchView = ({ handleClick, on }) => {
   return (
-    <div className="switch-view-container">
+    <div className="Toggle-view-container">
       <div onClick={handleClick} />
       <Switch checked={on} label="Toggle Me" onChange={handleClick} />
 

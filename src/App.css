@@ -1,34 +1,19 @@
-.App {
+/* duplicate styles as defined in styles tag in index.html, but w/e */
+.app {
   text-align: center;
   height: 100vh;
   width: 100vw;
 
-  display: flex;
-  align-items: center;
+  display: grid;
   justify-content: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
+.app .app-header {
   height: 150px;
   padding: 20px;
-  color: white;
+  color: #111;
 }
 
-.App-title {
+.app .loading {
   font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
