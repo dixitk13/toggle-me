@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ToggleView from "./ToggleView.js";
-import "./Toggle.styles.css";
+import "./toggle.styles.css";
 
 class Toggle extends Component {
   state = {

@@ -1,10 +1,10 @@
-.Toggle-view-container .special-text {
+.toggle-view-container .special-text {
     font-size: 24px;
     font-weight: 400;
 }
-.Toggle-view-container .special-text.on{
+.toggle-view-container .special-text.on{
     color: #2f993c;
 }
-.Toggle-view-container .special-text.off{
+.toggle-view-container .special-text.off{
     color: #ef4056;
 }

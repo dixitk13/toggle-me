@@ -1,10 +1,10 @@
 import React from "react";
 import { Switch } from "@blueprintjs/core";
-import "./Toggle.styles.css";
+import "./toggle.styles.css";
 
-const SwitchView = ({ handleClick, on }) => {
+const ToggleView = ({ handleClick, on }) => {
   return (
-    <div className="Toggle-view-container">
+    <div className="toggle-view-container">
       <div onClick={handleClick} />
       <Switch checked={on} label="Toggle Me" onChange={handleClick} />
 
@@ -15,4 +15,4 @@ const SwitchView = ({ handleClick, on }) => {
   );
 };
 
-export default SwitchView;
+export default ToggleView;
