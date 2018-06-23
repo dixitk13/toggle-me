@@ -70,23 +70,25 @@
       <div class="app">
         <div class="app-header">Welcome to the Toggle App</div>
         <div class="loading">Loading ....</div>
-        <button hidden>Show Prompt</button>
+        <button id="my-button" hidden>Show Prompt</button>
       </div>
     </div>
     <!-- before install prompt -->
     <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('service-worker.js');
-            window.addEventListener('beforeinstallprompt', event => {
-                event.preventDefault();
-                var button = document.querySelector('button');
-                button.removeAttribute('hidden');
-                button.addEventListener('click', () => {
-                    event.prompt();
-                    button.setAttribute('disabled', true);
-                });
-            });
-        }
+        // if ('serviceWorker' in navigator) {
+        //     window.addEventListener('load', function() {
+        //         navigator.serviceWorker.register('service-worker.js');
+        //         window.addEventListener('beforeinstallprompt', event => {
+        //             event.preventDefault();
+        //             var button = document.getElementById('my-button');
+        //             button.removeAttribute('hidden');
+        //             button.addEventListener('click', () => {
+        //                 event.prompt();
+        //                 button.setAttribute('disabled', true);
+        //             });
+        //         });
+        //     });
+        // }
     </script>
 
     <script>

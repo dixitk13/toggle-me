@@ -50,7 +50,7 @@ self.addEventListener("install", function(event) {
 
 // When the webpage goes to fetch files, we intercept that request and serve up the matching files
 // if we have them
-self.addEventListener("fetch", function(event) {});
+// self.addEventListener("fetch", function(event) {});
 
 // self.addEventListener("fetch", function(event) {
 //   if (doCache) {
@@ -61,3 +61,31 @@ self.addEventListener("fetch", function(event) {});
 //     );
 //   }
 // });
+
+self.addEventListener("fetch", function(event) {
+  console.log("removeAttributeHandling fetch event for", event.request.url);
+
+  event.respondWith(
+    caches.match(event.request).then(function(response) {
+      if (response) {
+        console.log("Found response in cache:", response);
+
+        return response;
+      }
+
+      console.log("No response found in cache. About to fetch from network...");
+
+      return fetch(event.request)
+        .then(function(response) {
+          console.log("Response from network is:", response);
+
+          return response;
+        })
+        .catch(function(error) {
+          console.error("Fetching failed:", error);
+
+          return caches.match("./index.html");
+        });
+    })
+  );
+});
