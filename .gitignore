@@ -4,6 +4,9 @@
 .idea/*
 .idea
 
+# ssl certs
+cert/
+
 # dependencies
 /node_modules
 

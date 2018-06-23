@@ -29,8 +29,8 @@
     <!-- Make sure theme-color is defined -->
     <meta name="theme-color" content="#536878">
 
-
-
+    <!-- adding so http routes to https -->
+    <link rel="canonical" href="http://toggle-me.herokuapp.com/" />
 
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
@@ -44,8 +44,15 @@
     <title>Toggle Me</title>
   </head>
 
+
   <!-- adding basic html css -->
   <style type="text/css">
+
+    .my-prompt {
+      display: block;
+      width: 100%;
+      color: #3dcc91;
+    }
     .app {
       text-align: center;
       height: 100vh;
@@ -67,46 +74,82 @@
   </style>
   <body>
     <div id="root">
+      <button class="my-prompt">Add to Home Screen</button>
       <div class="app">
         <div class="app-header">Welcome to the Toggle App</div>
         <div class="loading">Loading ....</div>
-        <button id="my-button" hidden>Show Prompt</button>
       </div>
     </div>
-    <!-- before install prompt -->
-    <script>
-        // if ('serviceWorker' in navigator) {
-        //     window.addEventListener('load', function() {
-        //         navigator.serviceWorker.register('service-worker.js');
-        //         window.addEventListener('beforeinstallprompt', event => {
-        //             event.preventDefault();
-        //             var button = document.getElementById('my-button');
-        //             button.removeAttribute('hidden');
-        //             button.addEventListener('click', () => {
-        //                 event.prompt();
-        //                 button.setAttribute('disabled', true);
-        //             });
-        //         });
-        //     });
-        // }
-    </script>
 
     <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('service-worker.js').then(function(registration) {
-                    // Registration was successful
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                }, function(err) {
-                    // registration failed :(
-                    console.log('ServiceWorker registration failed: ', err);
-                }).catch(function(err) {
-                    console.log(err)
-                });
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+
+          navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+              // Registration was successful
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, function(err) {
+              // registration failed :(
+              console.log('ServiceWorker registration failed: ', err);
+          }).catch(function(err) {
+              console.log(err)
+          });
+
+          // window.addEventListener("beforeinstallprompt", function(e) {
+          //     // log the platforms provided as options in an install prompt
+          //     console.log(e); // e.g., ["web", "android", "windows"]
+          //     e.userChoice.then(function(outcome) {
+          //         console.log(outcome); // either "accepted" or "dismissed"
+          //     }, handleError);
+          // });
+
+        });
+
+        let deferredPrompt = undefined
+
+        window.addEventListener('beforeinstallprompt', function(e) {
+            console.log('beforeinstallprompt Event fired');
+
+            e.preventDefault();
+
+            // save the event so it can be triggered later.
+            deferredPrompt = e;
+
+            // hiding
+            let myButton = document.querySelector(".my-prompt");
+
+            myButton.style.display = "block";
+            myButton.addEventListener("click", addToHomeScreen);
+
+            return false;
+        });
+
+        function addToHomeScreen() {
+
+          let myButton = document.querySelector(".my-prompt");
+
+          myButton.style.display = "none";
+
+          // Show the prompt
+          deferredPrompt.prompt();
+
+          // Wait for the user to respond to the prompt
+          deferredPrompt.userChoice
+            .then(function(choiceResult){
+
+              if (choiceResult.outcome === 'accepted') {
+                  console.log('User accepted the A2HS prompt');
+              } else {
+                  console.log('User dismissed the A2HS prompt');
+              }
+
+              deferredPrompt = null;
+
             });
-        } else {
-            console.log('service worker is not supported');
-        }
+          }
+      } else {
+          console.log('service worker is not supported');
+      }
     </script>
     <!--
       This HTML file is a template.
