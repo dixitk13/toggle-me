@@ -8,8 +8,29 @@ const cacheName = `toggle-me-${version}`;
 
 console.log("ServiceWorker start");
 
+window.addEventListener("load", function() {
+  navigator.serviceWorker
+    .register("./service-worker.js")
+    .then(
+      function(registration) {
+        // Registration was successful
+        console.log(
+          "My new ServiceWorker registration successful with scope: ",
+          registration.scope
+        );
+      },
+      function(err) {
+        // registration failed :(
+        console.log("ServiceWorker registration failed: ", err);
+      }
+    )
+    .catch(function(err) {
+      console.log(err);
+    });
+});
+
 // Delete old caches that are not our current one!
-self.addEventListener("activate", event => {
+window.addEventListener("activate", event => {
   const cacheWhitelist = [cacheName];
   event.waitUntil(
     caches.keys().then(keyList =>
@@ -29,13 +50,13 @@ self.addEventListener("activate", event => {
 // self.addEventListener('activate', () => self.clients.claim());
 
 // The first time the user starts up the PWA, 'install' is triggered.
-self.addEventListener("install", function(event) {
+window.addEventListener("install", function(event) {
   if (doCache) {
     event.waitUntil(
       caches.open(cacheName).then(function(cache) {
         // Get the assets manifest so we can see what our js file is named
         // This is because webpack hashes it
-        fetch("asset-manifest.json")
+        fetch("manifest.json")
           .then(response => {
             response.json();
           })
@@ -66,7 +87,7 @@ self.addEventListener("install", function(event) {
 //   }
 // });
 
-self.addEventListener("fetch", function(event) {
+window.addEventListener("fetch", function(event) {
   console.log("removeAttributeHandling fetch event for", event.request.url);
 
   event.respondWith(
@@ -96,7 +117,7 @@ self.addEventListener("fetch", function(event) {
 
 // caching
 
-self.addEventListener("install", e => {
+window.addEventListener("install", e => {
   let timeStamp = Date.now();
 
   console.log(`install-ing @ ${timeStamp}`);
@@ -112,16 +133,16 @@ self.addEventListener("install", e => {
           `/toggle-icon-144.png`,
           `/toggle-icon-white.png`
         ])
-        .then(() => self.skipWaiting());
+        .then(() => window.skipWaiting());
     })
   );
 });
 
-self.addEventListener("activate", event => {
-  event.waitUntil(self.clients.claim());
+window.addEventListener("activate", event => {
+  event.waitUntil(window.clients.claim());
 });
 
-self.addEventListener("fetch", event => {
+window.addEventListener("fetch", event => {
   event.respondWith(
     caches
       .open(cacheName)
@@ -132,41 +153,41 @@ self.addEventListener("fetch", event => {
   );
 });
 
-let deferredPrompt = undefined;
-
-self.addEventListener("beforeinstallprompt", function(e) {
-  console.log("beforeinstallprompt Event fired");
-
-  e.preventDefault();
-
-  // save the event so it can be triggered later.
-  deferredPrompt = e;
-
-  function addToHomeScreen() {
-    let myButton = document.querySelector(".my-prompt");
-
-    myButton.style.display = "none";
-
-    // Show the prompt
-    deferredPrompt.prompt();
-
-    // Wait for the user to respond to the prompt
-    deferredPrompt.userChoice.then(function(choiceResult) {
-      if (choiceResult.outcome === "accepted") {
-        console.log("User accepted the prompt");
-      } else {
-        console.log("User dismissed the prompt");
-      }
-
-      deferredPrompt = null;
-    });
-  }
-
-  // hiding
-  let myButton = document.querySelector(".my-prompt");
-
-  myButton.style.display = "block";
-  myButton.addEventListener("click", addToHomeScreen);
-
-  return false;
-});
+// let deferredPrompt = undefined;
+//
+// window.addEventListener("beforeinstallprompt", function(e) {
+//   console.log("beforeinstallprompt Event fired");
+//
+//   e.preventDefault();
+//
+//   // save the event so it can be triggered later.
+//   deferredPrompt = e;
+//
+//   function addToHomeScreen() {
+//     let myButton = document.querySelector(".my-prompt");
+//
+//     myButton.style.display = "none";
+//
+//     // Show the prompt
+//     deferredPrompt.prompt();
+//
+//     // Wait for the user to respond to the prompt
+//     deferredPrompt.userChoice.then(function(choiceResult) {
+//       if (choiceResult.outcome === "accepted") {
+//         console.log("User accepted the prompt");
+//       } else {
+//         console.log("User dismissed the prompt");
+//       }
+//
+//       deferredPrompt = null;
+//     });
+//   }
+//
+//   // hiding
+//   let myButton = document.querySelector(".my-prompt");
+//
+//   myButton.style.display = "block";
+//   myButton.addEventListener("click", addToHomeScreen);
+//
+//   return false;
+// });
