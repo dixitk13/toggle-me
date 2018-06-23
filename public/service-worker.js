@@ -21,6 +21,9 @@ self.addEventListener("activate", event => {
   );
 });
 
+// self.addEventListener('install', () => self.skipWaiting());
+// self.addEventListener('activate', () => self.clients.claim());
+
 // The first time the user starts up the PWA, 'install' is triggered.
 self.addEventListener("install", function(event) {
   if (doCache) {
@@ -47,12 +50,14 @@ self.addEventListener("install", function(event) {
 
 // When the webpage goes to fetch files, we intercept that request and serve up the matching files
 // if we have them
-self.addEventListener("fetch", function(event) {
-  if (doCache) {
-    event.respondWith(
-      caches.match(event.request).then(function(response) {
-        return response || fetch(event.request);
-      })
-    );
-  }
-});
+self.addEventListener("fetch", function(event) {});
+
+// self.addEventListener("fetch", function(event) {
+//   if (doCache) {
+//     event.respondWith(
+//       caches.match(event.request).then(function(response) {
+//         return response || fetch(event.request);
+//       })
+//     );
+//   }
+// });

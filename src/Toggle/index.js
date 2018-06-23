@@ -4,7 +4,7 @@ import "./toggle.styles.css";
 
 class Toggle extends Component {
   state = {
-    on: false
+    on: true
   };
 
   handleClick = () => this.setState({ on: !this.state.on });

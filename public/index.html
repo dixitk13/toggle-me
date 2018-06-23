@@ -19,12 +19,18 @@
     <link rel="shortcut icon" href="%PUBLIC_URL%/toggle-icon.png">
     <link rel="apple-touch-icon" sizes="any" href="%PUBLIC_URL%/toggle-icon-white.png">
 
+    <link rel="icon" href="%PUBLIC_URL%/toggle-icon-144.png" sizes="144x144" />
+
+
     <!-- Tell the browser it's a PWA -->
     <meta name="mobile-web-app-capable" content="yes">
     <!-- Tell iOS it's a PWA -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <!-- Make sure theme-color is defined -->
     <meta name="theme-color" content="#536878">
+
+
+
 
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
@@ -64,8 +70,25 @@
       <div class="app">
         <div class="app-header">Welcome to the Toggle App</div>
         <div class="loading">Loading ....</div>
+        <button hidden>Show Prompt</button>
       </div>
     </div>
+    <!-- before install prompt -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js');
+            window.addEventListener('beforeinstallprompt', event => {
+                event.preventDefault();
+                var button = document.querySelector('button');
+                button.removeAttribute('hidden');
+                button.addEventListener('click', () => {
+                    event.prompt();
+                    button.setAttribute('disabled', true);
+                });
+            });
+        }
+    </script>
+
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
