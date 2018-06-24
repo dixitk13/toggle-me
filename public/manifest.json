@@ -1,6 +1,8 @@
 {
-  "short_name": "Toggle Me",
   "name": "Toggle Me",
+  "description": "Toggle Me",
+  "short_name": "Toggle Me",
+  "version": "0.1.0",
   "icons": [
     {
       "src": "toggle-icon.png",
@@ -18,4 +20,3 @@
   "theme_color": "#222",
   "display": "standalone"
 }
-

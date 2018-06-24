@@ -11,7 +11,8 @@ const eslintFormatter = require("react-dev-utils/eslintFormatter");
 const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
 const paths = require("./paths");
 const getClientEnvironment = require("./env");
-var OfflinePlugin = require("offline-plugin");
+
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 // const ServiceWorkerWebpackPlugin = require("serviceworker-webpack-plugin");
 // const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
@@ -256,6 +257,7 @@ module.exports = {
         minifyURLs: true
       }
     }),
+    new CopyWebpackPlugin([{ from: "public" }]),
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.
     // It is absolutely essential that NODE_ENV was set to production here.
