@@ -1,0 +1,7 @@
+{
+  "extends": "react-app",
+  "env": { "browser": true, "serviceworker": true },
+  "rules": {
+    "no-restricted-globals": ["error", "event", "fdescribe"]
+  }
+}

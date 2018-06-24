@@ -82,11 +82,12 @@
     </div>
 
     <script>
+        // Check that service workers are registered
       // if ('serviceWorker' in navigator) {
-      //
-      //
-      // } else {
-      //     console.log('service worker is not supported');
+      //   // Use the window load event to keep the page load performant
+      //   window.addEventListener('load', () => {
+      //     navigator.serviceWorker.register('/register-service-worker.js');
+      //   });
       // }
     </script>
     <!--
