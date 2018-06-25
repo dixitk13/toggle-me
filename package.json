@@ -50,9 +50,9 @@
     "workbox-webpack-plugin": "^3.3.0"
   },
   "scripts": {
-    "start": "node scripts/build.js",
+    "start": "node scripts/start.js",
     "build-old": "node scripts/build.js",
-    "build": "NODE_ENV=production webpack --config config/webpack.config.prod.js",
+    "build": "NODE_ENV=production webpack --config config/webpack.config.prod.js --progress --colors",
     "test": "node scripts/test.js --env=jsdom"
   },
   "devDependencies": {

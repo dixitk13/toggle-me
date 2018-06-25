@@ -102,8 +102,8 @@ const cacheUrls = [
   "index.html",
   "./toggle-icon-144.png",
   "./toggle-icon.png",
-  "./toggle-icon-white.png"
-  // "./service-worker.js"
+  "./toggle-icon-white.png",
+  "./favicon.ico"
 ];
 
 // The first time the user starts up the PWA, 'install' is triggered.
