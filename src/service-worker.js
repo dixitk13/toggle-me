@@ -172,6 +172,7 @@ self.addEventListener("beforeinstallprompt", function(e) {
   deferredPrompt = e;
 
   function addToHomeScreen() {
+    console.log("trying to add to home screen");
     let myButton = document.querySelector(".my-prompt");
 
     myButton.style.display = "none";
