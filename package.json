@@ -54,11 +54,12 @@
     "url-loader": "1.1.1",
     "webpack": "4.19.1",
     "webpack-dev-server": "3.1.9",
+    "copy-webpack-plugin": "^5.0.0",
     "webpack-manifest-plugin": "2.0.4"
   },
   "scripts": {
     "start": "node scripts/build.js && node server.js",
-    "build": "node scripts/build.js",
+    "build": "node scripts/build.js && node server.js",
     "test": "node scripts/test.js --env=jsdom"
   },
   "eslintConfig": {
