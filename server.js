@@ -1,5 +1,5 @@
 const express = require("express");
-var enforce = require("express-sslify");
+// var enforce = require("express-sslify");
 
 const http = require("http");
 const path = require("path");
@@ -8,8 +8,13 @@ const os = require("os");
 let app = express();
 
 app.use(express.static(path.join(__dirname, "build")));
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
-
+app.use((req, res, next) => {
+  if (req.header("x-forwarded-proto") !== "https") {
+    res.redirect(`https://${req.header("host")}${req.url}`);
+  } else {
+    next();
+  }
+});
 const port = process.env.PORT || "8080";
 app.set("port", port);
 
