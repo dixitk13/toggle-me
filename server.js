@@ -1,13 +1,14 @@
 const express = require("express");
-var sslRedirect = require("heroku-ssl-redirect");
+var enforce = require("express-sslify");
 
 const http = require("http");
 const path = require("path");
 const os = require("os");
 
-let app = express(sslRedirect());
+let app = express();
 
 app.use(express.static(path.join(__dirname, "build")));
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
 const port = process.env.PORT || "8080";
 app.set("port", port);

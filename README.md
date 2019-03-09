@@ -7,4 +7,8 @@ Deployed on herokuapp at [https://toggle-me.herokuapp.com/](https://toggle-me.he
 
 Its a PWA which means you can add it to your home screen and use as an Application
 
+## heroku setup
+You can push a branch to a particular remote using the command below: 
+```git push toggle-me-staging feature/cra-upgrade:master -f```
+
 Toggle icon from [Alexandru Stoica](https://iconscout.com/icon/toggle-22)
