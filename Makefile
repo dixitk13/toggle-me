@@ -8,4 +8,4 @@ build: install
 	npm run build
 
 production: build
-	http-server build/
+	node ./server.js
