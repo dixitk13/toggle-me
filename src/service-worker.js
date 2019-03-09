@@ -2,7 +2,7 @@
 var doCache = true;
 
 // constants
-const version = "0.1.0";
+const version = "0.1.1";
 const cacheName = `toggle-me-${version}`;
 const runtime = "runtime";
 

@@ -13,6 +13,7 @@ const getClientEnvironment = require("./env");
 const paths = require("./paths");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const ModuleNotFoundPlugin = require("react-dev-utils/ModuleNotFoundPlugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -364,7 +365,13 @@ module.exports = {
     new ManifestPlugin({
       fileName: "asset-manifest.json",
       publicPath: publicPath
-    })
+    }),
+    new CopyPlugin([
+      {
+        from: "src/service-worker.js",
+        to: "service-worker.js"
+      }
+    ])
   ],
 
   // Some libraries import Node modules but don't use them in the browser.
