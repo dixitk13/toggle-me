@@ -2,12 +2,6 @@
 <html lang="en">
   <head>
 
-    <!-- include dependencies manually -->
-    <link href="../node_modules/normalize.css/normalize.css" rel="stylesheet" />
-    <link href="../node_modules/@blueprintjs/core/lib/css/blueprint.css" rel="stylesheet" />
-    <link href="../node_modules/@blueprintjs/icons/lib/css/blueprint-icons.css" rel="stylesheet" />
-    <!-- NOTE: blueprint-icons.css file must be included alongside blueprint.css! -->
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
@@ -28,9 +22,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <!-- Make sure theme-color is defined -->
     <meta name="theme-color" content="#536878">
-
-
-
 
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
@@ -73,23 +64,6 @@
         <button id="my-button" hidden>Show Prompt</button>
       </div>
     </div>
-    <!-- before install prompt -->
-    <script>
-        // if ('serviceWorker' in navigator) {
-        //     window.addEventListener('load', function() {
-        //         navigator.serviceWorker.register('service-worker.js');
-        //         window.addEventListener('beforeinstallprompt', event => {
-        //             event.preventDefault();
-        //             var button = document.getElementById('my-button');
-        //             button.removeAttribute('hidden');
-        //             button.addEventListener('click', () => {
-        //                 event.prompt();
-        //                 button.setAttribute('disabled', true);
-        //             });
-        //         });
-        //     });
-        // }
-    </script>
 
     <script>
         if ('serviceWorker' in navigator) {
