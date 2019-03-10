@@ -3,12 +3,18 @@
   text-align: center;
   height: 100vh;
   width: 100vw;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 
+.app .app-container {
+  flex: 4;
+}
+
 .app .app-header {
-  height: 150px;
+  flex: 1;
   padding: 20px;
   color: #111;
 }

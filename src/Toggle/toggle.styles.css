@@ -8,3 +8,13 @@
 .toggle-view-container .special-text.off{
     color: #ef4056;
 }
+.toggle-view-container .toggle-count {
+    align-self: flex-start;
+    font-size: 36px;
+    padding: 30px;
+    color: rgba(0,0,0, 0.8);
+}
+
+.toggle-view-container{
+    flex: 5;
+}
