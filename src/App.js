@@ -12,11 +12,10 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <button className="my-prompt">Add to Home Screen</button>
-
         <div className="app">
+          <button className="my-prompt">Add to Home Screen</button>
           <div className="app-header">Welcome to the Toggle Me App</div>
-          <div className="container">
+          <div className="app-container">
             <Toggle />
           </div>
         </div>

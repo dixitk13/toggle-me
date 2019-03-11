@@ -3,14 +3,39 @@ import ToggleView from "./ToggleView.js";
 import "./toggle.styles.css";
 
 class Toggle extends Component {
-  state = {
-    on: true
+  constructor(props) {
+    super(props);
+    let storeCount = 0;
+
+    if (this.valid()) {
+      storeCount = parseInt(localStorage.getItem("count"));
+    }
+
+    this.state = {
+      count: storeCount
+    };
+  }
+
+  valid = () =>
+    localStorage.getItem("count") &&
+    localStorage.getItem("count") !== undefined &&
+    !Number.isNaN(Number(localStorage.getItem("count")));
+
+  updateCount = () => {
+    let count = 0;
+    if (this.valid()) {
+      count = parseInt(localStorage.getItem("count"));
+    }
+    count = count + 1;
+    console.log("update count", typeof count, count, this.state);
+
+    this.setState({ count: count }, () => localStorage.setItem("count", count));
   };
 
-  handleClick = () => this.setState({ on: !this.state.on });
-
   render() {
-    return <ToggleView on={this.state.on} handleClick={this.handleClick} />;
+    const { count } = this.state;
+    return <ToggleView count={count} updateCount={this.updateCount} />;
   }
 }
+
 export default Toggle;
