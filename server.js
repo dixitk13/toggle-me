@@ -14,7 +14,7 @@ app.use((req, res, next) => {
     next();
   }
 });
-const port = process.env.PORT || "8080";
+const port = process.env.PORT || "80";
 app.set("port", port);
 
 const hostname = os.hostname();
