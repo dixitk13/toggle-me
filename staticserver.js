@@ -3,6 +3,7 @@ const express = require("express");
 const http = require("http");
 const path = require("path");
 const os = require("os");
+const CountRoute = require("./server/counter");
 
 let app = express();
 
@@ -14,7 +15,13 @@ app.use((req, res, next) => {
     next();
   }
 });
-const port = process.env.PORT || "80";
+
+// app.use("/api/count", CountRoute);
+app.get("/url", (req, res, next) => {
+  res.json(["Tony", "Lisa", "Michael", "Ginger", "Food"]);
+});
+
+const port = process.env.PORT || "8080";
 app.set("port", port);
 
 const hostname = os.hostname();
