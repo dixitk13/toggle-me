@@ -3,7 +3,6 @@ const express = require("express");
 const http = require("http");
 const path = require("path");
 const os = require("os");
-const CountRoute = require("./server/counter");
 
 let app = express();
 
@@ -14,11 +13,6 @@ app.use((req, res, next) => {
   } else {
     next();
   }
-});
-
-// app.use("/api/count", CountRoute);
-app.get("/url", (req, res, next) => {
-  res.json(["Tony", "Lisa", "Michael", "Ginger", "Food"]);
 });
 
 const port = process.env.PORT || "8080";

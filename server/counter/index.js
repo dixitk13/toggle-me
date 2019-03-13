@@ -6,8 +6,11 @@ let count = 0;
 router
   .post("/", function(req, res) {
     const { count: newCount } = req.body;
-    count = newCount + 1;
-    console.log("POST", count, req.body);
+
+    count = !Number.isNaN(Number(newCount)) ? Math.max(newCount, count) + 1 : 0;
+
+    console.log("POST", count);
+
     try {
       res.json({
         data: newCount
@@ -17,7 +20,7 @@ router
     }
   })
   .get("/", function(req, res) {
-    count++;
+    count = !Number.isNaN(Number(count)) ? count + 1 : 0;
     console.log("GET", count);
     res.json({ data: count });
   });
